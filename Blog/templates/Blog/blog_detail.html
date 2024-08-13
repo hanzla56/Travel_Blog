@@ -1,0 +1,458 @@
+{% extends "base.html" %} {% load static %}
+ {% block css %} 
+<link rel="stylesheet" href="{% static "Blog/css/blog_detail.css" %}"> 
+<style>
+  .bg_image_3{
+    background-image: linear-gradient(rgb(8 21 33 / 80%), rgb(14 45 36 / 80%)),
+    url("{{background_image.image.url}}");
+  }
+</style>
+{% endblock css %} 
+{% block content %}
+<section class="bg_image_3">
+  <div class="content text-center">
+    <h2>Blog Posts</h2>
+    <p>Here are top blog posts which we posted</p>
+  </div>
+  <div class="custom-shape-divider-bottom-1722932939">
+    <svg
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+        class="shape-fill"
+      ></path>
+    </svg>
+  </div>
+</section>
+
+<div class="container">
+  <div class="row g-5">
+    {% if blog %}
+    <div class="col-lg-8">
+      <p class="mt-5">{{blog.content|safe}}</p>
+      <br /><br /><br /><br /><br />
+
+      
+      
+      <div class="comments">
+        <h2>Comments</h2>
+        {% if comments %} {% for comment in comments %}
+        <div class="comment-box" id="comment-{{ comment.id }}">
+          <div class="d-flex">
+            <strong>{{ comment.name }}</strong>
+
+            <a
+              href="#comment-form"
+              class="reply-btn ms-auto"
+              style="color: blue"
+              onclick="openReplyForm(event, {{ comment.id }})"
+              >Reply</a
+            >
+          </div>
+          <p>{{ comment.comment_text }}</p>
+          <small>{{ comment.created_at }}</small>
+          <!-- Replies container, which will be filled dynamically -->
+          <br />
+          <div class="reply" style="background-color: red;">
+            {% if comment.replies.all %} {% for reply in comment.replies.all %}
+            <div class="" id="comment-{{ reply.id }}">
+              <div class="d-flex">
+                <strong>{{ reply.name }}</strong>
+
+                <a
+                  href="#cform"
+                  class="reply-btn ms-auto"
+                  style="color: blue"
+                  onclick="openReplyForm(event, {{ comment.id }})"
+                  >Reply</a
+                >
+              </div>
+              <p>{{ reply.comment_text }}</p>
+              <small>{{ reply.created_at }}</small>
+            </div>
+            <br />
+            {% endfor %} {% endif %}
+          </div>
+        </div>
+        {% endfor %} 
+        {% else %}
+        <!-- No comments section -->
+        <div class="comment-box">
+          <strong>John Doe</strong>
+          <p>
+            This is a comment. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.
+          </p>
+          <small>Posted on August 6, 2024</small>
+        </div>
+        <div class="comment-box">
+          <strong>Jane Smith</strong>
+          <p>
+            This is another comment. Pellentesque vitae eros ac dolor ultricies
+            euismod.
+          </p>
+          <small>Posted on August 5, 2024</small>
+          <a
+            href="#"
+            class="reply-btn"
+            style="color: blue"
+            onclick="openReplyForm(event, {{ comment.id }})"
+            >Reply</a
+          >
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="comment-form py-5 my-3" id="cform">
+        <h3>Leave a Comment</h3>
+        <form>
+          <div class="form-group" id="comment-form">
+            <input type="hidden" id="comment-id" name="comment_id" value="" />
+            <input
+              type="hidden"
+              id="post-id"
+              name="post_id"
+              value="{{ blog.id }}"
+            />
+
+            <textarea
+              id="comment"
+              name="comment"
+              rows="4"
+              placeholder="Write your comment here..."
+              required
+            ></textarea>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6 col-lg-6">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your Name"
+                required
+              />
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Your Email"
+                required
+              />
+            </div>
+          </div>
+          <button type="submit">Add Comment</button>
+        </form>
+      </div>
+    </div>
+    {% endif %} {% comment %}
+    <div class="col-lg-8">
+      <p>
+        Dhigurah island is probably the most beautiful island you’ve never heard
+        of in the Maldives. It’s a local island without the fancy overwater
+        resorts that are famous in the Maldives, but instead it has a long and
+        wonderful white sand beach.
+        <br /><br />
+        If you’re wanting to see the Maldives on a budget, this is one of the
+        best places to do it. Dhigurah has all of the amazing tropical scenery
+        you’d expect from the Maldives, plus family-owned hotels that are as low
+        as $70 USD per night!
+        <br /><br />
+        We recently visited two local islands in the Maldives — Dhigurah and
+        Fulidhoo — and couldn’t be happier with our choice. They were both nice
+        and different. This travel guide will explain how to get to Dhigurah
+        island, what to do there, where to stay, and everything else you need to
+        know before you
+      </p>
+      <br /><br />
+      <img src="{% static "images/detail3.jpg" %}" class='img-fluid' alt="">
+      <br /><br />
+      <p>
+        Dhigurah island is probably the most beautiful island you’ve never heard
+        of in the Maldives. It’s a local island without the fancy overwater
+        resorts that are famous in the Maldives, but instead it has a long and
+        wonderful white sand beach.
+        <br /><br />
+        If you’re wanting to see the Maldives on a budget, this is one of the
+        best places to do it. Dhigurah has all of the amazing tropical scenery
+        you’d expect from the Maldives, plus family-owned hotels that are as low
+        as $70 USD per night!
+        <br /><br />
+        We recently visited two local islands in the Maldives — Dhigurah and
+        Fulidhoo — and couldn’t be happier with our choice. They were both nice
+        and different. This travel guide will explain how to get to Dhigurah
+        island, what to do there, where to stay, and everything else you need to
+        know before you
+      </p>
+      <br />
+      <h3>More Details</h3>
+      <br /><br />
+      <p>
+        Dhigurah island is probably the most beautiful island you’ve never heard
+        of in the Maldives. It’s a local island without the fancy overwater
+        resorts that are famous in the Maldives, but instead it has a long and
+        wonderful white sand beach.
+        <br /><br />
+        If you’re wanting to see the Maldives on a budget, this is one of the
+        best places to do it. Dhigurah has all of the amazing tropical scenery
+        you’d expect from the Maldives, plus family-owned hotels that are as low
+        as $70 USD per night!
+        <br /><br />
+        We recently visited two local islands in the Maldives — Dhigurah and
+        Fulidhoo — and couldn’t be happier with our choice. They were both nice
+        and different. This travel guide will explain how to get to Dhigurah
+        island, what to do there, where to stay, and everything else you need to
+        know before you
+      </p>
+      <br /><br />
+      <img src="{% static "images/detail2.jpg" %}" class='img-fluid' alt="">
+      <br /><br />
+      <p>
+        Dhigurah island is probably the most beautiful island you’ve never heard
+        of in the Maldives. It’s a local island without the fancy overwater
+        resorts that are famous in the Maldives, but instead it has a long and
+        wonderful white sand beach.
+        <br /><br />
+        If you’re wanting to see the Maldives on a budget, this is one of the
+        best places to do it. Dhigurah has all of the amazing tropical scenery
+        you’d expect from the Maldives, plus family-owned hotels that are as low
+        as $70 USD per night!
+        <br /><br />
+        We recently visited two local islands in the Maldives — Dhigurah and
+        Fulidhoo — and couldn’t be happier with our choice. They were both nice
+        and different. This travel guide will explain how to get to Dhigurah
+        island, what to do there, where to stay, and everything else you need to
+        know before you
+      </p>
+      <p>
+        Dhigurah island is probably the most beautiful island you’ve never heard
+        of in the Maldives. It’s a local island without the fancy overwater
+        resorts that are famous in the Maldives, but instead it has a long and
+        wonderful white sand beach.
+        <br /><br />
+        If you’re wanting to see the Maldives on a budget, this is one of the
+        best places to do it. Dhigurah has all of the amazing tropical scenery
+        you’d expect from the Maldives, plus family-owned hotels that are as low
+        as $70 USD per night!
+        <br /><br />
+        We recently visited two local islands in the Maldives — Dhigurah and
+        Fulidhoo — and couldn’t be happier with our choice. They were both nice
+        and different. This travel guide will explain how to get to Dhigurah
+        island, what to do there, where to stay, and everything else you need to
+        know before you
+      </p>
+      <img src="{% static "images/detail1.jpg" %}" class='img-fluid' alt="">
+      <br /><br />
+      <p>
+        Dhigurah island is probably the most beautiful island you’ve never heard
+        of in the Maldives. It’s a local island without the fancy overwater
+        resorts that are famous in the Maldives, but instead it has a long and
+        wonderful white sand beach.
+        <br /><br />
+        If you’re wanting to see the Maldives on a budget, this is one of the
+        best places to do it. Dhigurah has all of the amazing tropical scenery
+        you’d expect from the Maldives, plus family-owned hotels that are as low
+        as $70 USD per night!
+        <br /><br />
+        We recently visited two local islands in the Maldives — Dhigurah and
+        Fulidhoo — and couldn’t be happier with our choice. They were both nice
+        and different. This travel guide will explain how to get to Dhigurah
+        island, what to do there, where to stay, and everything else you need to
+        know before you
+      </p>
+      <br /><br /><br /><br /><br />
+
+      <div class="comments">
+        <h2>Comments</h2>
+        <div class="comment-box">
+          <strong>John Doe</strong>
+          <p>
+            This is a comment. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.
+          </p>
+          <small>Posted on August 6, 2024</small>
+        </div>
+        <div class="comment-box">
+          <strong>Jane Smith</strong>
+          <p>
+            This is another comment. Pellentesque vitae eros ac dolor ultricies
+            euismod.
+          </p>
+          <small>Posted on August 5, 2024</small>
+        </div>
+        <!-- More comments can be added here -->
+      </div>
+
+      <div class="comment-form">
+        <h3>Leave a Comment</h3>
+        <form>
+          <textarea
+            rows="4"
+            placeholder="Write your comment here..."
+          ></textarea>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+    {% endcomment %}
+
+    <!-- Popular Guides  -->
+    <div class="col-lg-4">
+      {% if popular_guides %}
+      <div class="popular_post">
+        <h2 class="text-center">Popular Guides</h2>
+        <br /><br />
+        {% for guide in popular_guides %}
+        <div class="card custom-card">
+          <img
+            src="{{guide.main_image.url}}"
+            class="card-img-top"
+            alt="..."
+            loading='lazy'
+          />
+          <div class="card-body">
+            <p class="card-text text-center">{{guide.title}}</p>
+          </div>
+        </div>
+        <br /><br />
+        {% endfor %}
+      </div>
+
+      {% else %}
+      <div class="popular_post">
+        <h2 class="text-center">Popular Guides</h2>
+        <br /><br />
+        <div class="card custom-card">
+          <img
+            src="{% static 'Blog/images/Blog_page.jpg' %}"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <p class="card-text text-center">Lakes in Virginia and Hampton</p>
+          </div>
+        </div>
+        <br /><br />
+        <div class="card custom-card border-none">
+          <img
+            src="{% static 'Blog/images/detail3.jpg' %}"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <p class="card-text text-center">Lakes in Virginia and Hampton</p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block js %}
+<script>
+  // Ajax call for adding the comment
+  $(document).ready(function () {
+    $(".comment-form form").on("submit", function (e) {
+      e.preventDefault(); // Prevent the default form submission
+
+      // Collect form data
+      var formData = {
+        post_id: $("#post-id").val(),
+        comment: $("#comment").val(),
+        name: $("#name").val(),
+        email: $("#email").val(),
+        comment_id: $("#comment-id").val() || null, // Add this to check if it's a reply
+      };
+
+      // Send the form data via AJAX
+      $.ajax({
+        url: "/add_comment/", // Replace with your server endpoint URL
+        type: "POST",
+        data: formData,
+        headers: {
+          "X-CSRFToken": "{{ csrf_token }}", // Add CSRF token for security if using Django
+        },
+        success: function (response) {
+          // Handle success, e.g., display a success message or update the comments section
+          alert("Comment submitted successfully!");
+          console.log(response);
+
+          // Create the new comment HTML
+          var newCommentHtml = `
+                    <div class="comment-box" id="comment-${response.comment_id}">
+                        <strong>${formData.name}</strong>
+                        <p>${formData.comment}</p>
+                        <small>Just now</small>
+                        <a href="#comment-form" class="reply-btn" style="color: blue;" onclick="openReplyForm(event, ${response.comment_id})">Reply</a>
+                    </div>
+                `;
+
+          if (formData.comment_id) {
+            // If it's a reply, append it under the parent comment
+            console.log("if condition");
+            $("#comment-" + formData.comment_id).append(
+              '<div class="reply">' + newCommentHtml + "</div>"
+            );
+            console.log("appending");
+          } else {
+            // If it's a new comment, append it to the main comment section
+            console.log("else condition");
+            $(".comments").append(newCommentHtml);
+          }
+
+          // Optionally, clear the form
+          $(".comment-form form")[0].reset();
+        },
+        error: function (xhr, status, error) {
+          // Handle errors, e.g., display an error message
+          alert("There was an error submitting your comment: " + error);
+        },
+      });
+    });
+  });
+
+  function openReplyForm(event, commentId) {
+    event.preventDefault();
+    console.log("console");
+    document.getElementById("comment-id").value = commentId;
+
+    $("html, body").animate(
+      {
+        scrollTop: $("#cform").offset().top,
+      },
+      500
+    ); // Duration of the scroll in milliseconds
+  }
+
+  // document.getElementById('comment-form').onsubmit = function(event) {
+  //   event.preventDefault();
+
+  //   // Retrieve form data
+  //   const commentId = document.getElementById('comment-id').value;
+  //   const name = document.getElementById('name').value;
+  //   const email = document.getElementById('email').value;
+  //   const commentText = document.getElementById('comment-text').value;
+
+  //   if (commentId) {
+  //     // Handle the reply submission (e.g., send data to server)
+  //     console.log("Replying to comment ID:", commentId);
+  //   } else {
+  //     // Handle the new comment submission (e.g., send data to server)
+  //     console.log("Adding a new comment");
+  //   }
+
+  //   // Clear the form and reset the title
+  //   document.getElementById('comment-id').value = "";
+  //   document.getElementById('form-title').textContent = "Leave a Comment";
+  //   document.getElementById('comment-form').reset();
+  // };
+</script>
+
+{% endblock js %}

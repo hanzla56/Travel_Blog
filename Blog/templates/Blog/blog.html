@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block css %}
+<link rel="stylesheet" href="{% static "Blog/css/blog.css" %}">
+<style>
+  .bg_image_3{
+    background-image: linear-gradient(rgb(8 21 33 / 80%), rgb(14 45 36 / 80%)),
+    url("{{background_image.image.url}}");
+  }
+</style>
+{% endblock css %} 
+
+{% block content %}
+<section class="bg_image_3">
+      <div class="content text-center">
+        <h2>{{ heading|default:"All Blog Posts" }}</h2>
+        <p>Here are top blog posts which we posted of {{heading}}</p>
+      </div>
+      <div class="custom-shape-divider-bottom-1722932939">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+        </svg>
+    </div>
+    </section>
+
+<div class="container" style="margin-top: 50px;">
+      <div class="row g-4">
+        {% if blogs %}
+        {% for blog in blogs %}
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+          <div class="card custom-card">
+                <img src="{{blog.main_image.url}}" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                  <h5 class="card-title">{{blog.title}}</h5>
+                  <p class="card-text">{{blog.content|truncatechars:120}}</p>
+                  <a href="{% url "Blog:blog_detail" blog.slug %}" class="btn btn-color">Read More</a>
+                </div>
+            </div>
+          </div>
+            {% endfor %}
+        {% else %}
+        
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+              <div class="card custom-card">
+                    <img src="{% static "Blog/images/Blog_page.jpg" %}" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="{% url "Blog:blog_detail" %}" class="btn btn-color">Read More</a>
+                    </div>
+                  </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+              <div class="card custom-card">
+                    <img src="{% static "Blog/images/Blog_page.jpg" %}" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="{% url "Blog:blog_detail" %}" class="btn btn-color">Read More</a>
+                    </div>
+                  </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+              <div class="card custom-card">
+                    <img src="{% static "Blog/images/Blog_page.jpg" %}" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="{% url "Blog:blog_detail" %}" class="btn btn-color">Read More</a>
+                    </div>
+                  </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+              <div class="card custom-card">
+                    <img src="{% static "Blog/images/Blog_page.jpg" %}" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="{% url "Blog:blog_detail" %}" class="btn btn-color">Read More</a>
+                    </div>
+                  </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+              <div class="card custom-card">
+                    <img src="{% static "Blog/images/Blog_page.jpg" %}" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="{% url "Blog:blog_detail" %}" class="btn btn-color">Read More</a>
+                    </div>
+                  </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+              <div class="card custom-card">
+                    <img src="{% static "Blog/images/Blog_page.jpg" %}" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="{% url "Blog:blog_detail" %}" class="btn btn-color">Read More</a>
+                    </div>
+                  </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+              <div class="card custom-card">
+                    <img src="{% static "Blog/images/Blog_page.jpg" %}" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="{% url "Blog:blog_detail" %}" class="btn btn-color">Read More</a>
+                    </div>
+                  </div>
+        </div>
+        {% endif %}
+      </div>
+</div>
+
+{% endblock content %}
+
+

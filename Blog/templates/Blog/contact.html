@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}{% endblock css %}
+
+{% block content %}
+<section id="contact" class="container py-5 mt-5">
+      <h2 class="text-center mb-4">Contact Us</h2>
+      <div class="row">
+          <div class="col-md-6 mb-4">
+              <div class="card shadow-sm">
+                  <div class="card-body">
+                      <h3 class="card-title mb-4">Get in Touch</h3>
+                      {% if messages %}
+                        <div class="alert alert-info">
+                            {% for message in messages %}
+                                <div>{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                      <form action="{% url 'Blog:contact' %}" method="post">
+                        {% csrf_token %}
+                          <div class="mb-3">
+                              <label for="name" class="form-label">Name:</label>
+                              <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="email" class="form-label">Email:</label>
+                              <input type="email" id="email" name="email" class="form-control" placeholder="Your Email" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="phone" class="form-label">Phone:</label>
+                              <input type="tel" id="phone" name="phone" class="form-control" placeholder="Your Phone Number" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="message" class="form-label">Message:</label>
+                              <textarea id="message" name="message" class="form-control" rows="6" placeholder="Your Message" required></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Send Message</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+  
+          <div class="col-md-6">
+              <div class="card shadow-sm">
+                  <div class="card-body">
+                    {% if c_info %}
+                    <h3 class="card-title mb-4">Our Contact Information</h3>
+                      <p><strong>Address:</strong>  {{c_info.address}}</p>
+                      <p><strong>Phone:</strong>   {{c_info.phone}}</p>
+                      <p><strong>Email:</strong>  {{c_info.email}}</p>
+                      <p><strong>Business Hours:</strong>  {{c_info.business_hours}}</p>
+                    {% else %}
+                      <h3 class="card-title mb-4">Our Contact Information</h3>
+                      <p><strong>Address:</strong> 1234 Elm Street, Some City, Some Country</p>
+                      <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                      <p><strong>Email:</strong> contact@company.com</p>
+                      <p><strong>Business Hours:</strong> Mon-Fri, 9:00 AM - 5:00 PM</p>
+                    {% endif %}
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+{% endblock content %}
+
+
+

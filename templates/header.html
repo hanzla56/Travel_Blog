@@ -1,0 +1,76 @@
+<div class="container">
+<nav style="margin-bottom: 20px;">
+      <div class="navbar">
+        <i class='bx bx-menu'></i>
+        <div class="logo"><a href="{% url "Blog:home_page" %}">Rumvia</a></div>
+        <div class="nav-links">
+          <div class="sidebar-logo">
+            <span class="logo-name">Rumvia</span>
+            <i class='bx bx-x' ></i>
+          </div>
+          <ul class="links">
+            <li><a href="{% url "Blog:home_page" %}">HOME</a></li>
+            <li><a href="{% url "Blog:blog_page" %}">BLOGS</a></li>
+
+
+
+
+            <li>
+              <a href="#">Categories</a>
+              <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i>
+              <ul class="htmlCss-sub-menu sub-menu">
+                  {% for category in categories %}
+                      {% if category.subcategories.all %}
+                          <!-- Category with subcategories -->
+                          <li class="more">
+                              <span>
+                                  <a href="{% url 'Blog:blog_by_category' category.slug %}">{{ category.name }}</a>
+                                  <i class='bx bxs-chevron-right arrow more-arrow'></i>
+                              </span>
+                              <ul class="more-sub-menu sub-menu">
+                                  {% for subcategory in category.subcategories.all %}
+                                      <li><a href="{% url 'Blog:blog_by_category' subcategory.slug %}">{{ subcategory.name }}</a></li>
+                                  {% endfor %}
+                              </ul>
+                          </li>
+                      {% else %}
+                          <!-- Category without subcategories -->
+                          <li>
+                              <a href="{% url 'Blog:blog_by_category' category.slug %}">{{ category.name }}</a>
+                          </li>
+                      {% endif %}
+                  {% endfor %}
+              </ul>
+          </li>
+          
+
+
+
+
+
+          
+
+
+            <li>
+              <a href="#">Destinations</a>
+              <i class='bx bxs-chevron-down js-arrow arrow '></i>
+              <ul class="js-sub-menu sub-menu">
+                <li><a href="{% url 'Blog:blog_by_destination' 'America' %}">America</a></li>
+                <li><a href="{% url 'Blog:blog_by_destination' 'Europe' %}">Europe</a></li>
+                <li><a href="{% url 'Blog:blog_by_destination' 'Asia' %}">Asia</a></li>
+                <li><a href="{% url 'Blog:blog_by_destination' 'Russia' %}">Russia</a></li>
+              </ul>
+            </li>
+            <li><a href="{% url "Blog:about" %}">ABOUT US</a></li>
+            <li><a href="{% url "Blog:contact" %}">CONTACT US</a></li>
+          </ul>
+        </div>
+        <div class="search-box">
+          <i class='bx bx-search'></i>
+          <div class="input-box">
+            <input type="text" placeholder="Search...">
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>

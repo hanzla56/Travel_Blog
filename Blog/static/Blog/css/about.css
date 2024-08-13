@@ -1,0 +1,59 @@
+
+.container {
+      width: 80%;
+      margin: 0 auto;
+  }
+  
+  .about-section {
+      padding: 40px 0;
+      margin-top: 150px !important;
+      background-color: #fff;
+  }
+  
+
+  
+  /* .about-img {
+      flex: 1;
+      max-width: 60%;
+      height: 500px;
+      border-radius: 8px;
+  } */
+  
+  .about-text {
+      flex: 2;
+  }
+  
+  .team-section {
+      padding: 40px 0;
+      background-color: #fff;
+  }
+  
+  .team-members {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 40px;
+  }
+  
+  .team-member {
+      text-align: center;
+      flex: 1;
+      max-width: 300px;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .team-member img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+  }
+  .f {
+    /* font-family: "poppins"; */
+    font-size: 15px;
+  }
+  

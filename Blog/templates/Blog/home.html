@@ -1,0 +1,386 @@
+{% extends "base.html" %} {% load static %} 
+{% block css %}
+<link rel="stylesheet" href="{% static "Blog/css/home.css" %}">
+{% endblock css %} 
+{% block content %}
+
+
+<!-- Slider section -->
+<div id="carouselExampleSlidesOnly" class="carousel slide" style="margin-top: 70px" data-bs-ride="carousel">
+  <div class="carousel-inner">
+
+    {% if carousel %}
+    {% for item in carousel %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="1000">
+      <img
+        src="{{item.image.url}}"
+        class="d-block w-100"
+        alt="..."
+      />
+      <div class="carousel-caption">
+        <h5 class="cap">{{item.title}}</h5>
+        <p>{{item.description}}</p>
+      </div>
+    </div>
+    {% endfor %}
+
+    {% else %}
+    <div class="carousel-item active" data-bs-interval="1000">
+      <img
+        src="{% static 'Blog/images/image3.jpg' %}"
+        class="d-block w-100"
+        alt="..."
+        loading="lazy"
+      />
+      <div class="carousel-caption">
+        <h5 class="cap">Enjoy. Travel. Experience</h5>
+        <p>Discover the world’s best-kept secrets with our exclusive guides to breathtaking hidden gems and enchanting locales</p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="1000">
+      <img
+        src="{% static 'Blog/images/image2.jpg' %}"
+        class="d-block w-100"
+        alt="..."
+      />
+      <div class="carousel-caption">
+        <h5 class="cap">Enjoy. Travel. Experience</h5>
+        <p>Discover the world’s best-kept secrets with our exclusive guides to breathtaking hidden gems and enchanting locales</p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="1000">
+      <img
+        src="{% static 'Blog/images/image1.jpg' %}"
+        class="d-block w-100"
+        alt="..."
+      />
+      <div class="carousel-caption">
+        <h5 class="cap">Enjoy. Travel. Experience</h5>
+        <p>Discover the world’s best-kept secrets with our exclusive guides to breathtaking hidden gems and enchanting locales</p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- About Us Section -->
+<div class="container mt-5">
+  <div class="row g-4">
+    {% if about %}
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <img src="{{about.image.url}}" class="img-fluid m-auto" style="height: auto; width: 100%; object-fit: cover;" alt="" loading="lazy">
+      
+    </div>
+    <div class="col-md-6">
+      <h3 class="heading">{{about.title}}</h3>
+      <p class="f mt-2">
+         {{about.description|linebreaksbr}}
+      </p>
+      <!-- <button class="button btn btn-primary">Read More</button> -->
+    </div>
+    {% else %}
+    
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <img src="{% static 'Blog/images/ath.jpg' %}" class="img-fluid m-auto" style="height: 400px; width: 100%; object-fit: cover;" alt="">
+      
+    </div>
+    <div class="col-md-6">
+      <h3 class="heading">About Us</h3>
+      <p class="f mt-2">
+          We are Rumvia, the person behind this website. I'm an adventurer who has been traveling the world full-time for 8 years now.
+          <br><br>
+          I started this travel blog in 2019 to document my international trips, share my photos, and help others learn how to explore the world and discover hidden gems.
+          <br><br>
+          I'm currently based in Bali, Indonesia, where I met my wife Intan, who’s a Bali local. Now she joins me on these wild and crazy adventures too.
+          <br><br>
+          Together, we've done some bucket list hikes, climbed active volcanoes, seen exotic wildlife, and visited some spectacular castles, temples, and monuments around the world.
+          <br><br>
+          I've worked with and been featured by BBC Travel, NBC News, Time, and other notable organizations.
+          <br><br>
+          I haven’t been everywhere, but it’s on my list. I hope this world travel blog can help and inspire you in your own journeys as well!
+      </p>
+      <!-- <button class="button btn btn-primary">Read More</button> -->
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+
+ <!-- Featured Destinations -->
+<div class="heading-container mt-5 mb-5">
+      <h1 class="heading">Featured Destinations</h1>
+</div>
+<div class="container">
+      <div class="row gx-4 gy-3">
+        {% if featured_destinations %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="#" class="text-underline-none">
+            <div class="card" >
+              <img src="{% static 'Blog/images/ruvmia.jpg' %}" class="card-img-top-guides" alt="..." loading="lazy">
+             
+                <button href="#" class="btn">Australia</button>
+
+           
+              <!-- <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div> -->
+            </div>
+          </a>
+        </div>
+        {% else %}
+        
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="#" class="text-underline-none">
+            <div class="card" >
+              <img src="{% static 'Blog/images/ruvmia.jpg' %}" class="card-img-top-guides" alt="...">
+             
+                <button href="#" class="btn">Australia</button>
+
+           
+              <!-- <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div> -->
+            </div>
+          </a>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="#" class="text-underline-none">
+            <div class="card" >
+              <img src="{% static 'Blog/images/ruvmia.jpg' %}" class="card-img-top-guides" alt="...">
+              <button href="#" class="btn">Brazil</button>
+
+              <!-- <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div> -->
+            </div>
+          </a>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="#" class="text-underline-none">
+            <div class="card" >
+              <img src="{% static 'Blog/images/ruvmia.jpg' %}" class="card-img-top-guides" alt="...">
+              <button href="#" class="btn">Swedan</button>
+
+              <!-- <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div> -->
+            </div>
+          </a>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="#" class="text-underline-none">
+            <div class="card">
+              <img src="{% static 'Blog/images/ruvmia.jpg' %}" class="card-img-top-guides" alt="...">
+              <button href="#" class="btn">Nepal</button>
+
+              <!-- <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div> -->
+            </div>
+          </a>
+        </div>
+        {% endif %}
+        <!-- Repeat for additional cards -->
+      </div>
+      <div class="my-class">
+
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><div class="child-div">
+              <img src="{% static 'Blog/images/image2.jpg' %}" alt="Image 1" class="circle-img">
+              <p class="text">Text 1</p>
+            </div></div>
+            <div class="swiper-slide"> <div class="child-div">
+              <img src="{% static 'Blog/images/image3.jpg' %}" alt="Image 1" class="circle-img">
+              <p class="text">Text 1</p>
+            </div></div>
+            <div class="swiper-slide"><div class="child-div">
+              <img src="{% static 'Blog/images/image2.jpg' %}" alt="Image 1" class="circle-img">
+              <p class="text">Text 1</p>
+            </div></div>
+            <div class="swiper-slide"><div class="child-div">
+              <img src="{% static 'Blog/images/image1.jpg' %}" alt="Image 1" class="circle-img">
+              <p class="text">Text 1</p>
+            </div></div>
+            <div class="swiper-slide"><div class="child-div">
+              <img src="{% static 'Blog/images/image3.jpg' %}" alt="Image 1" class="circle-img">
+              <p class="text">Text 1</p>
+            </div></div>
+            <div class="swiper-slide"><div class="child-div">
+              <img src="{% static 'Blog/images/image2.jpg' %}" alt="Image 1" class="circle-img">
+              <p class="text">Text 1</p>
+            </div></div>
+            <div class="swiper-slide"><div class="child-div">
+              <img src="{% static 'Blog/images/image1.jpg' %}" alt="Image 1" class="circle-img">
+              <p class="text">Text 1</p>
+            </div></div>
+            <div class="swiper-slide"><div class="child-div">
+              <img src="{% static 'Blog/images/image2.jpg' %}" alt="Image 1" class="circle-img">
+              <p class="text">Text 1</p>
+            </div></div>
+            <div class="swiper-slide"><div class="child-div">
+              <img src="{% static 'Blog/images/image3.jpg' %}" alt="Image 1" class="circle-img">
+              <p class="text">Text 1</p>
+            </div></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+</div>
+
+
+ <!-- Latest Post -->
+<div class="heading-container mt-5 mb-5">
+      <h1 class="heading">Latest post</h1>
+</div>
+<div class="container">
+      <div class="row g-4">
+        {% if latest_posts %}
+        {% for post in latest_posts %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+          <a href="#" class="text-underline-none">
+            <div class="card custom-card">
+              <img src="{{post.main_image.url}}" class="card-img-top" alt="..." loading="lazy">
+              <div class="card-body">
+                <p class="card-text">{{post.title}}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+        {% else %}
+        
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+          <a href="#" class="text-underline-none">
+            <div class="card custom-card">
+              <img src="{% static 'Blog/images/Blog_page.jpg' %}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Lakes in Virginia and Hampton</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+          <a href="#" class="text-underline-none">
+            <div class="card custom-card">
+              <img src="{% static 'Blog/images/Blog_page.jpg' %}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Lakes in Virginia and Hampton</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+          <a href="#" class="text-underline-none">
+            <div class="card custom-card">
+              <img src="{% static 'Blog/images/Blog_page.jpg' %}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Lakes in Virginia and Hampton</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endif %}
+       
+        <!-- Repeat for additional cards -->
+      </div>
+</div>
+
+
+<!-- Popular Guides -->
+<div class="heading-container mt-5 mb-5">
+  <h1 class="heading">Popular Guides</h1>
+</div>
+<div class="container">
+  <div class="row gx-4 gy-3">
+    {% if popular_guides %}
+       {% for guide in popular_guides %}
+       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a href="#" class="text-underline-none">
+          <div class="card" >
+            {% if guide.popular_image.image.url %}
+            <img src="{{guide.popular_image.image.url}}" class="card-img-top-guides" alt="..." loading="lazy">   
+            
+            {% else %}
+            <img src="{{guide.main_image.url}}" class="card-img-top-guides" alt="..."> 
+            {% endif %}
+            <div class="card-body">
+              <p class="card-text text-center">{{guide.title}}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+       {% endfor %}
+    {% else %}
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <a href="#" class="text-underline-none">
+        <div class="card" >
+          <img src="{% static 'Blog/images/ruvmia.jpg' %}" class="card-img-top-guides" alt="...">   
+          <div class="card-body">
+            <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <a href="#" class="text-underline-none">
+        <div class="card" >
+          <img src="{% static 'Blog/images/ruvmia.jpg' %}" class="card-img-top-guides" alt="...">
+          <div class="card-body">
+            <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <a href="#" class="text-underline-none">
+        <div class="card" >
+          <img src="{% static 'Blog/images/ruvmia.jpg' %}" class="card-img-top-guides" alt="...">
+          
+
+          <div class="card-body">
+            <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <a href="#" class="text-underline-none">
+        <div class="card">
+          <img src="{% static 'Blog/images/ruvmia.jpg' %}" class="card-img-top-guides" alt="...">
+        
+
+          <div class="card-body">
+            <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endif %}
+    <!-- Repeat for additional cards -->
+  </div>
+</div>
+
+
+
+<div class="text-center mt-5 p-4 ">
+  <h3 class="f" style="font-size: 22px;">Newsletter</h3>
+  <p>Subscribe to my newsletter for the latest blog posts, tips, & travel guides. Let's stay updated!</p>
+  <div class="row gx-0">
+    <div class="col-md-3"></div>
+    <div class="col-sm-12 col-md-5">
+      <input type="email" placeholder="Email...." class="form-control mw-75 mb-2 mb-lg-0 email-input">
+    </div>
+    <div class="col-sm-12 col-md-2">
+
+      <button class="btn bg-dark text-white w-100 m w-lg-25 subscribe-btn ">Subscribe</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,114 @@
+/* *{
+      font-family: "poppins" !important;
+} */
+.custom-shape-divider-bottom-1722932939 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+    
+    .custom-shape-divider-bottom-1722932939 svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 152px;
+    }
+    
+    .custom-shape-divider-bottom-1722932939 .shape-fill {
+      fill: #FFFFFF;
+    }
+
+.bg_image_3 {
+  background-image: linear-gradient(rgb(8 21 33 / 80%), rgb(14 45 36 / 80%)),
+    url(../images/ath.jpg);
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  margin-top: 70px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.popular_post{
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Change the values as needed */
+      padding: 15px; /* Optional: Add some padding inside the column */
+      background-color: #fff; /* Optional: Ensure background color for better shadow visibility */
+      border-radius: 8px; /* Optional: Rounded corners for a smoother look */
+  }
+  
+.custom-card {
+      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); */
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      border: none;
+    } 
+    
+    .custom-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2), 0 17px 50px rgba(0, 0, 0, 0.2);
+    } */
+.comments {
+  margin-top: 20px;
+}
+.comment-box {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+.comment-box strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+.comment-box small {
+  display: block;
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+.comment-form {
+  margin-top: 20px;
+}
+.comment-form textarea{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+.comment-form input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+.comment-form button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.comment-form button:hover {
+  background-color: #0056b3;
+}
+.reply{
+  margin-left: 50px;
+}
+.reply-btn {
+  text-decoration: none;
+  font-size: 14px;
+}
