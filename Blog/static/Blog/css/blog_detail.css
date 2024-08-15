@@ -68,7 +68,6 @@
   display: block;
   color: #888;
   font-size: 0.9rem;
-  margin-top: 5px;
 }
 .comment-form {
   margin-top: 20px;
@@ -103,8 +102,13 @@
 .comment-form button:hover {
   background-color: #0056b3;
 }
-.reply{
+.reply-box{
   margin-left: 50px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
 }
 .reply-btn {
   text-decoration: none;

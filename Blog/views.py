@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import os
 
 
@@ -14,6 +15,8 @@ def home_page(request):
       latest_posts = BlogPost.objects.order_by('-published_date')[:5]
       popular_guides = BlogPost.objects.filter(is_popular_guide=True)
       featured_destinations = BlogPost.objects.filter(is_featured_destination=True)
+      first_four_destinations = featured_destinations[:4]
+      remaining_destinations = featured_destinations[4:]
       
       context = {
             'carousel':carousel,
@@ -21,23 +24,43 @@ def home_page(request):
             'latest_posts': latest_posts,
             'popular_guides': popular_guides,
             'featured_destinations': featured_destinations,
+            'first_four_destinations': first_four_destinations,
+            'remaining_destinations': remaining_destinations,
       }
       
       return render(request,'Blog/home.html',context)
-
+  
 def blog_page(request):
-      blogs = BlogPost.objects.all()
-      background_image = BlogPageBackgroundImage.objects.first()
-      context = {
-            'blogs':blogs,
-      }
-      return render(request,'Blog/blog.html',context)
+    blog_list = BlogPost.objects.all()
+    print(f'this is blog list {blog_list}')
+    paginator = Paginator(blog_list, 1)  # Show 10 blogs per page
+
+    page_number = request.GET.get('page')
+    try:
+        page_obj = paginator.page(page_number)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver the first page.
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g., 9999), deliver the last page of results.
+        page_obj = paginator.page(paginator.num_pages)
+    
+    print(f'this is page object {page_obj}')
+    background_image = BlogPageBackgroundImage.objects.first()
+    context = {
+        'page_obj': page_obj,  # Pass page_obj to the context
+        'background_image': background_image,
+    }
+    return render(request, 'Blog/blog.html', context)
+
+
 
 def blog_detail(request,slug):
       blog = get_object_or_404(BlogPost,slug=slug)
       popular_guides = BlogPost.objects.filter(is_popular_guide=True)
       background_image = BlogPageBackgroundImage.objects.first()
       comments = Comment.objects.filter(post = blog)
+      print('view runs here')
       context = {
             'blog':blog,
             'popular_guides':popular_guides,
@@ -45,7 +68,32 @@ def blog_detail(request,slug):
             'comments':comments
       }
       return render(request,'Blog/blog_detail.html',context)
+  
+  
+def search(request):
+    query = request.GET.get('query')
+    
+    if query:
+        blogs = BlogPost.objects.filter(title__icontains=query)
+    else:
+        blogs = BlogPost.objects.none()  # No results if no query
 
+    paginator = Paginator(blogs, 4)  # Show 10 blogs per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)  # Simplified handling
+
+    background_image = BlogPageBackgroundImage.objects.first()
+    
+    context = {
+        'blogs':blogs,
+        'page_obj': page_obj,  # Pass page_obj to the context
+        'query': query,
+        'is_search': bool(query),  # Set is_search based on whether there is a query
+        'background_image': background_image,
+    }
+    
+    return render(request, 'Blog/blog.html', context)
+    
 def about(request):
       about_content = AboutUs.objects.first()
       context ={
@@ -92,21 +140,23 @@ def blog_by_category(request, slug):
     print(slug)
     cate = get_object_or_404(Category, slug=slug)
     background_image = BlogPageBackgroundImage.objects.first()
-    blogs = BlogPost.objects.filter(category=cate)
+    page_obj = BlogPost.objects.filter(category=cate)
     context = {
         'heading': slug,
-        'blogs': blogs,  # Replace with actual blog fetching logic
+        'page_obj': page_obj,  # Replace with actual blog fetching logic
         'background_image':background_image,
     }
     return render(request, 'Blog/blog.html', context)
 
-def blog_by_destination(request, destination_name):
+def blog_by_destination(request, slug):
     # Fetch blogs based on the destination (logic not shown here)
+    dest = get_object_or_404(Destination, slug=slug)
     background_image = BlogPageBackgroundImage.objects.first()
+    page_obj = BlogPost.objects.filter(destination=dest)
     context = {
-        'heading': destination_name,
+        'heading': slug,
         'background_image':background_image,
-        'blogs': [],  # Replace with actual blog fetching logic
+        'page_obj': page_obj,  # Replace with actual blog fetching logic
     }
     return render(request, 'Blog/blog.html', context)
 
@@ -157,32 +207,3 @@ def add_comment(request):
    
    
    
-# @csrf_exempt
-# def upload_image(request):
-#     if request.method == 'POST':
-#         uploaded_file = request.FILES.get('file')
-#         if not uploaded_file:
-#             return JsonResponse({'error': 'No file uploaded'}, status=400)
-
-#         try:
-#             # Define the file path where the image will be saved
-#             file_path = os.path.join(settings.MEDIA_ROOT, 'blog_images', uploaded_file.name)
-#             file_url = os.path.join(settings.MEDIA_URL, 'blog_images', uploaded_file.name)
-
-#             # Create the directory if it doesn't exist
-#             os.makedirs(os.path.dirname(file_path), exist_ok=True)
-
-#             # Save the file
-#             with open(file_path, 'wb+') as destination:
-#                 for chunk in uploaded_file.chunks():
-#                     destination.write(chunk)
-
-#             # Return the file URL
-#             return JsonResponse({'location': file_url})
-
-#         except Exception as e:
-#             # Log the error and return a failure response
-#             print(f"Error saving file: {e}")
-#             return JsonResponse({'error': 'Failed to upload image'}, status=500)
-
-#     return JsonResponse({'error': 'Invalid request'}, status=400)

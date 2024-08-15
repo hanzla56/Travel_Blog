@@ -112,116 +112,37 @@
 </div>
 <div class="container">
       <div class="row gx-4 gy-3">
-        {% if featured_destinations %}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <a href="#" class="text-underline-none">
-            <div class="card" >
-              <img src="{% static 'Blog/images/ruvmia.jpg' %}" class="card-img-top-guides" alt="..." loading="lazy">
-             
-                <button href="#" class="btn">Australia</button>
-
-           
-              <!-- <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div> -->
+        {% if first_four_destinations %}
+        {% for destination in first_four_destinations %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <a href="{% url 'Blog:destination_detail' destination.slug %}" class="text-underline-none">
+                    <div class="card">
+                        <img src="{{destination.image.url}}" class="card-img-top-guides" alt="{{ destination.name }}" loading="lazy">
+                        <button class="btn">{{ destination.name }}</button>
+                    </div>
+                </a>
             </div>
-          </a>
-        </div>
-        {% else %}
-        
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <a href="#" class="text-underline-none">
-            <div class="card" >
-              <img src="{% static 'Blog/images/ruvmia.jpg' %}" class="card-img-top-guides" alt="...">
-             
-                <button href="#" class="btn">Australia</button>
-
-           
-              <!-- <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div> -->
-            </div>
-          </a>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <a href="#" class="text-underline-none">
-            <div class="card" >
-              <img src="{% static 'Blog/images/ruvmia.jpg' %}" class="card-img-top-guides" alt="...">
-              <button href="#" class="btn">Brazil</button>
-
-              <!-- <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div> -->
-            </div>
-          </a>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <a href="#" class="text-underline-none">
-            <div class="card" >
-              <img src="{% static 'Blog/images/ruvmia.jpg' %}" class="card-img-top-guides" alt="...">
-              <button href="#" class="btn">Swedan</button>
-
-              <!-- <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div> -->
-            </div>
-          </a>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <a href="#" class="text-underline-none">
-            <div class="card">
-              <img src="{% static 'Blog/images/ruvmia.jpg' %}" class="card-img-top-guides" alt="...">
-              <button href="#" class="btn">Nepal</button>
-
-              <!-- <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div> -->
-            </div>
-          </a>
-        </div>
-        {% endif %}
-        <!-- Repeat for additional cards -->
+        {% endfor %}
+    {% else %}
+        <p class="text-center p-5">No featured destinations available.</p>
+    {% endif %}
+</div>
       </div>
       <div class="my-class">
 
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"><div class="child-div">
-              <img src="{% static 'Blog/images/image2.jpg' %}" alt="Image 1" class="circle-img">
-              <p class="text">Text 1</p>
-            </div></div>
-            <div class="swiper-slide"> <div class="child-div">
-              <img src="{% static 'Blog/images/image3.jpg' %}" alt="Image 1" class="circle-img">
-              <p class="text">Text 1</p>
-            </div></div>
-            <div class="swiper-slide"><div class="child-div">
-              <img src="{% static 'Blog/images/image2.jpg' %}" alt="Image 1" class="circle-img">
-              <p class="text">Text 1</p>
-            </div></div>
-            <div class="swiper-slide"><div class="child-div">
-              <img src="{% static 'Blog/images/image1.jpg' %}" alt="Image 1" class="circle-img">
-              <p class="text">Text 1</p>
-            </div></div>
-            <div class="swiper-slide"><div class="child-div">
-              <img src="{% static 'Blog/images/image3.jpg' %}" alt="Image 1" class="circle-img">
-              <p class="text">Text 1</p>
-            </div></div>
-            <div class="swiper-slide"><div class="child-div">
-              <img src="{% static 'Blog/images/image2.jpg' %}" alt="Image 1" class="circle-img">
-              <p class="text">Text 1</p>
-            </div></div>
-            <div class="swiper-slide"><div class="child-div">
-              <img src="{% static 'Blog/images/image1.jpg' %}" alt="Image 1" class="circle-img">
-              <p class="text">Text 1</p>
-            </div></div>
-            <div class="swiper-slide"><div class="child-div">
-              <img src="{% static 'Blog/images/image2.jpg' %}" alt="Image 1" class="circle-img">
-              <p class="text">Text 1</p>
-            </div></div>
-            <div class="swiper-slide"><div class="child-div">
-              <img src="{% static 'Blog/images/image3.jpg' %}" alt="Image 1" class="circle-img">
-              <p class="text">Text 1</p>
-            </div></div>
+            {% if remaining_destinations %}
+                    {% for destination in remaining_destinations %}
+                        <div class="swiper-slide">      
+                                <img src="{{destination.image.url}}" alt="{{ destination.name }}" class="circle-img">
+                                <p class="text">{{ destination.name }}</p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                  
+                {% endif %}
+
           </div>
           <div class="swiper-pagination"></div>
         </div>

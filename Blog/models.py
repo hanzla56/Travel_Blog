@@ -25,6 +25,7 @@ class Category(models.Model):
 # Destination Model
 class Destination(models.Model):
     name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='destination_images/',blank=True, null=True)
     slug = models.SlugField(unique=True, max_length=100, blank=True, null=True)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='sub_destinations', blank=True, null=True)
     
