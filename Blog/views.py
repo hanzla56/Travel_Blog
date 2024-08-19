@@ -14,7 +14,7 @@ def home_page(request):
       about_content = AboutUs.objects.first()
       latest_posts = BlogPost.objects.order_by('-published_date')[:5]
       popular_guides = BlogPost.objects.filter(is_popular_guide=True)
-      featured_destinations = BlogPost.objects.filter(is_featured_destination=True)
+      featured_destinations = Destination.objects.filter(is_featured_destination=True)
       first_four_destinations = featured_destinations[:4]
       remaining_destinations = featured_destinations[4:]
       

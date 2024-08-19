@@ -36,9 +36,18 @@ class SliderAdmin(admin.ModelAdmin):
     search_fields = ('title',)
     
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ('title','published_date', 'is_popular_guide','is_featured_destination','category')
+    formfield_overrides = {
+        models.TextField: {'widget': TinyMCE(attrs={'cols': 80, 'rows': 30}, mce_attrs={
+            'image_class_list': [
+                {'title': 'Responsive Image', 'value': 'your-custom-class'},
+            ],
+            'image_advtab': True,  # Optional: Show the "Advanced" tab in the image dialog
+        })},
+    }
+    
+    list_display = ('title','published_date', 'is_popular_guide','category')
     search_fields = ('title','is_featured_destination','is_popular_guide')
-    list_filter = ["is_featured_destination","is_popular_guide"]
+    list_filter = ["is_popular_guide"]
     
     # class Media:
     #     js = ('tinymce/tinymce.min.js',)

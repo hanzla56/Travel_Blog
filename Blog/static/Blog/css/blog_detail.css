@@ -114,3 +114,8 @@
   text-decoration: none;
   font-size: 14px;
 }
+.your-custom-class {
+  width: 500px; /* Define the desired width */
+  height: auto; /* Adjust the height automatically */
+  max-width: 100%; /* Ensure it scales down for smaller screens */
+}

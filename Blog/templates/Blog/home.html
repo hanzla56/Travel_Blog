@@ -115,9 +115,16 @@
         {% if first_four_destinations %}
         {% for destination in first_four_destinations %}
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <a href="{% url 'Blog:destination_detail' destination.slug %}" class="text-underline-none">
+                <a href="{% url 'Blog:blog_by_destination' destination.slug %}" class="text-underline-none">
                     <div class="card">
-                        <img src="{{destination.image.url}}" class="card-img-top-guides" alt="{{ destination.name }}" loading="lazy">
+                      
+                      {% if destination.image %}
+                        
+                      <img src="{{destination.image.url}}" class="card-img-top-guides" alt="{{ destination.name }}" loading="lazy">
+                      {% else %}
+                        <p>No image found</p>
+                      {% endif %}
+                        
                         <button class="btn">{{ destination.name }}</button>
                     </div>
                 </a>

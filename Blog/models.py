@@ -28,6 +28,7 @@ class Destination(models.Model):
     image = models.ImageField(upload_to='destination_images/',blank=True, null=True)
     slug = models.SlugField(unique=True, max_length=100, blank=True, null=True)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='sub_destinations', blank=True, null=True)
+    is_featured_destination = models.BooleanField(default=False)
     
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -73,11 +74,10 @@ class BlogPost(models.Model):
     slug = models.SlugField(unique=True, max_length=200, blank=True, null=True)
     content = tinymce_models.HTMLField()
     published_date = models.DateTimeField(auto_now_add=True)
-    is_featured_destination = models.BooleanField(default=False)
     is_popular_guide = models.BooleanField(default=False)
     featured_image = models.ForeignKey('BlogPostImage', related_name='featured_image', null=True, blank=True, on_delete=models.SET_NULL)
     popular_image = models.ForeignKey('BlogPostImage', related_name='popular_image', null=True, blank=True, on_delete=models.SET_NULL)
-    main_image = models.ImageField()
+    main_image = models.ImageField(upload_to='blog_images/')
     category = models.ForeignKey(Category, null=True,blank=True, on_delete=models.CASCADE, related_name='blog_posts')
     destination = models.ForeignKey(Destination, null=True,blank=True, on_delete=models.CASCADE, related_name='blog_posts_destination')
 
