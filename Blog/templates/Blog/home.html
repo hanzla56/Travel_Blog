@@ -134,25 +134,65 @@
         <p class="text-center p-5">No featured destinations available.</p>
     {% endif %}
 </div>
-      </div>
-      <div class="my-class">
+<div class="my-class">
 
-        <div class="swiper mySwiper">
-          <div class="swiper-wrapper">
-            {% if remaining_destinations %}
-                    {% for destination in remaining_destinations %}
-                        <div class="swiper-slide">      
-                                <img src="{{destination.image.url}}" alt="{{ destination.name }}" class="circle-img">
-                                <p class="text">{{ destination.name }}</p>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                  
-                {% endif %}
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      {% if remaining_destinations %}
+              {% for destination in remaining_destinations %}
+                  <div class="swiper-slide">   
+                    <div class="child-div">
 
+                      <img src="{{destination.image.url}}" alt="{{ destination.name }}" class="circle-img">
+                      <p class="text">{{ destination.name }}</p>
+                    </div>   
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="child-div">
+                  <img src="{% static 'Blog/images/image3.jpg' %}" alt="Image 1" class="circle-img">
+                  <p class="text">Text 1</p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="child-div">
+              <img src="{% static 'Blog/images/image3.jpg' %}" alt="Image 1" class="circle-img">
+              <p class="text">Text 1</p>
+            </div>
           </div>
-          <div class="swiper-pagination"></div>
+          <div class="swiper-slide">
+            <div class="child-div">
+          <img src="{% static 'Blog/images/image3.jpg' %}" alt="Image 1" class="circle-img">
+          <p class="text">Text 1</p>
         </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="child-div">
+      <img src="{% static 'Blog/images/image3.jpg' %}" alt="Image 1" class="circle-img">
+      <p class="text">Text 1</p>
+    </div>
+  </div>
+  <div class="swiper-slide">
+    <div class="child-div">
+  <img src="{% static 'Blog/images/image3.jpg' %}" alt="Image 1" class="circle-img">
+  <p class="text">Text 1</p>
+</div>
+</div>
+<div class="swiper-slide">
+  <div class="child-div">
+<img src="{% static 'Blog/images/image3.jpg' %}" alt="Image 1" class="circle-img">
+<p class="text">Text 1</p>
+</div>
+</div>
+              {% endfor %}
+          {% else %}
+            
+          {% endif %}
+
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
       </div>
 </div>
 

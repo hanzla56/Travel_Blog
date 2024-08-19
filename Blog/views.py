@@ -33,7 +33,7 @@ def home_page(request):
 def blog_page(request):
     blog_list = BlogPost.objects.all()
     print(f'this is blog list {blog_list}')
-    paginator = Paginator(blog_list, 1)  # Show 10 blogs per page
+    paginator = Paginator(blog_list, 5)  # Show 10 blogs per page
 
     page_number = request.GET.get('page')
     try:

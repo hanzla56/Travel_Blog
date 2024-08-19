@@ -11,8 +11,13 @@
 {% block content %}
 <section class="bg_image_3">
   <div class="content text-center">
-    <h2>Blog Posts</h2>
-    <p>Here are top blog posts which we posted</p>
+    
+    {% if blog %}
+    <h2>{{blog.title}}</h2>
+      
+    {% endif %}
+      
+    <!-- <p>Here are top blog posts which we posted</p> -->
   </div>
   <div class="custom-shape-divider-bottom-1722932939">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
