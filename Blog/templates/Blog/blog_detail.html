@@ -10,15 +10,13 @@
 {% endblock css %}
 {% block content %}
 <section class="bg_image_3">
-  <div class="content text-center">
-    
+  <div class="content text-center">  
     {% if blog %}
-    <h2>{{blog.title}}</h2>
-      
-    {% endif %}
-      
+    <h2>{{blog.title}}</h2>     
+    {% endif %}     
     <!-- <p>Here are top blog posts which we posted</p> -->
   </div>
+  
   <div class="custom-shape-divider-bottom-1722932939">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
       <path
@@ -35,7 +33,7 @@
       <p class="mt-5">{{blog.content|safe}}</p>
       <br /><br /><br /><br /><br />
 
-
+  <!-- Comments Contianer starts from here -->
       <div class="comments">
         <h2>Comments</h2>
         {% if comments %}
@@ -134,10 +132,10 @@
         {% endif %}
       </div>
       
-
+    <!-- Comment Form  -->
       <div class="comment-form py-5 my-3" id="cform">
         <h3>Leave a Comment</h3>
-        <form>
+        <form id="main-comment-form">
           <div class="form-group" id="comment-form">
             <input type="hidden" id="comment-id" name="comment_id" value="" />
             <input type="hidden" id="post-id" name="post_id" value="{{ blog.id }}" />
@@ -278,24 +276,30 @@ $(document).ready(function () {
         `;
 
         if (isReply) {
-          // If it's a reply, append it under the parent comment's reply-list
-          console.log('reply appended')
-          $("#comment-" + formData.comment_id + " .reply-list").append(
-            '<div class="reply-box ms-4 mt-3">' + newCommentHtml + "</div>"
-          );
-        } else {
-          // If it's a new comment, append it to the main comments section
-          $(".comments").append(newCommentHtml);
-        }
+  // If it's a reply, append it under the parent comment's reply-list
+  console.log('reply appended');
+  $("#comment-" + formData.comment_id + " .reply-list").append(
+    '<div class="reply-box ms-4 mt-3">' + newCommentHtml + "</div>"
+  );
+} else {
+  // If it's a new comment, append it to the main comments section
+  $(".comments").append(newCommentHtml);
+}
 
-    //     // Optionally, clear the form
-    //     var formToReset = $('#reply-form-' + response.comment_id + ' form')[0];
-    //     console.log(formToReset)
-    // if (formToReset) {
-    //   formToReset.reset();
-    // } else {
-    //   console.error('Form not found!');
-    // }
+// Reset the appropriate form after the comment is successfully added
+let formToReset;
+if (isReply) {
+  // For reply forms
+  formToReset = $('#reply-form-' + formData.comment_id + ' form')[0];
+} else {
+  // For the main comment form
+  formToReset = $('#main-comment-form')[0];
+}
+if (formToReset) {
+  formToReset.reset(); // Resets the form fields
+} else {
+  console.error('Form not found!');
+}
       },
       error: function (xhr, status, error) {
         // Handle errors, e.g., display an error message
