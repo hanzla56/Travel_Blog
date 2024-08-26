@@ -162,7 +162,7 @@ class ContactFormSubmission(models.Model):
 
 
 class EmailNewsletter(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     
     def __str__(self):
         return self.email
