@@ -13,6 +13,7 @@ def home_page(request):
       carousel = Slider.objects.all()
       about_content = AboutUs.objects.first()
       latest_posts = BlogPost.objects.order_by('-published_date')[:5]
+      print(f'this is latest post {latest_posts}')
       popular_guides = BlogPost.objects.filter(is_popular_guide=True)
       featured_destinations = Destination.objects.filter(is_featured_destination=True)
       first_four_destinations = featured_destinations[:4]
