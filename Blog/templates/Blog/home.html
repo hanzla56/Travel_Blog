@@ -303,20 +303,56 @@
 <div class="text-center mt-5 p-4 ">
   <h3 class="f" style="font-size: 22px;">Newsletter</h3>
   <p>Subscribe to my newsletter for the latest blog posts, tips, & travel guides. Let's stay updated!</p>
+  <form action="" id="email_newsletter">
   <div class="row gx-0">
     <div class="col-md-3"></div>
     <div class="col-sm-12 col-md-5">
-      <input type="email" placeholder="Email...." class="form-control mw-75 mb-2 mb-lg-0 email-input">
+      <input type="email" name="email" placeholder="Email...." class="form-control mw-75 mb-2 mb-lg-0 email-input">
     </div>
     <div class="col-sm-12 col-md-2">
 
-      <button class="btn bg-dark text-white w-100 m w-lg-25 subscribe-btn ">Subscribe</button>
+      <button type="submit" class="btn bg-dark text-white w-100 m w-lg-25 subscribe-btn ">Subscribe</button>
     </div>
   </div>
+</form>
 </div>
 
-
-
-
-
 {% endblock content %}
+
+
+
+{% block js %}
+<script>
+
+  $(document).ready(function() {
+    $("#email_newsletter").submit(function(e){
+         e.preventDefault()
+         console.log('email')
+         var formdata = {
+          email : $("input[name='email']").val()
+         };
+
+        $.ajax({
+          url : "/email_newsletter/",
+          type: 'POST',
+          data : formdata,
+          headers: {
+        "X-CSRFToken": "{{ csrf_token }}", // Add CSRF token for security if using Django
+      },
+
+      success : function(response){
+        Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "you have subscribed to news letter",
+        showConfirmButton: false,
+        timer: 2000
+});
+      }
+        }) 
+    })
+
+  })
+</script>
+
+{% endblock js %}

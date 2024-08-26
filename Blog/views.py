@@ -206,5 +206,10 @@ def add_comment(request):
       return JsonResponse({'error': 'Invalid request.'}, status=400)
 
    
-   
-   
+def emailNewsletter(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        obj = EmailNewsletter(email=email)
+        obj.save()
+        
+    return JsonResponse({'message':'added successfully'})

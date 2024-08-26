@@ -159,3 +159,10 @@ class ContactFormSubmission(models.Model):
     def __str__(self):
         return f"Message from {self.name} ({self.email})"
     
+
+
+class EmailNewsletter(models.Model):
+    email = models.EmailField()
+    
+    def __str__(self):
+        return self.email

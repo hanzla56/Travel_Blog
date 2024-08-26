@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Destination, Slider,AboutUs,BlogPost,BlogPostImage,Comment,ContactFormSubmission,ContactInfo,BlogPageBackgroundImage
+from .models import Category,EmailNewsletter,Destination, Slider,AboutUs,BlogPost,BlogPostImage,Comment,ContactFormSubmission,ContactInfo,BlogPageBackgroundImage
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from tinymce.widgets import TinyMCE
@@ -64,6 +64,7 @@ admin.site.register(AboutUs, AboutUsAdmin)
 admin.site.register(BlogPost,BlogPostAdmin)
 admin.site.register(BlogPostImage)
 admin.site.register(Comment)
+admin.site.register(EmailNewsletter)
 admin.site.register(ContactInfo)
 admin.site.register(ContactFormSubmission)
 admin.site.register(BlogPageBackgroundImage,BackgroundImageAdmin)
