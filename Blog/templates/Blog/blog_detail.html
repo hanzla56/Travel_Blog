@@ -187,13 +187,13 @@ $(document).ready(function () {
       success: function (response) {
         // Handle success, e.g., display a success message or update the comments section
         Toastify({
-  text: "Your comment has been added",
-  duration: 1500,
-  close: true,
-  gravity: "top", // `top` or `bottom`
-  position: "right", // `left`, `center` or `right`
-  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-}).showToast();
+          text: "Your comment has been added",
+          duration: 1500,
+          close: true,
+          gravity: "top", // `top` or `bottom`
+          position: "right", // `left`, `center` or `right`
+          backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+        }).showToast();
 
         console.log(response);
 

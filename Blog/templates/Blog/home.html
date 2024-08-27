@@ -341,15 +341,27 @@
       },
 
       success : function(response){
+        $("#email_newsletter").trigger('reset')
         Toastify({
-  text: "Your email has been added",
-  duration: 1500,
-  close: true,
-  gravity: "top", // `top` or `bottom`
-  position: "right", // `left`, `center` or `right`
-  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-}).showToast();
-      }
+            text: response.message,
+            duration: 1500,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+          }).showToast();
+      },
+
+      error: function(xhr, status, error) {
+        Toastify({
+            text: xhr.responseJSON.error || "An error occurred", // Use error message from server if available
+            duration: 1500,
+            close: true,
+            gravity: "center",
+            position: "center",
+            backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)", // Adjust for error
+        }).showToast();
+    }
         }) 
     })
 
