@@ -31,7 +31,7 @@
   <div class="row g-5">
     {% if blog %}
     <div class="col-lg-8 " >
-      <p class="mt-5 blog-detail_img">{{blog.content|add_lazy_load|safe}}</p>
+      <p class="mt-5 blog-detail_img">{{blog.content|safe}}</p>
       <br /><br /><br /><br /><br />
 
   <!-- Comments Contianer starts from here -->
@@ -160,6 +160,9 @@
 <script>
 
 $(document).ready(function () {
+  $('.blog-detail_img img').each(function() {
+    $(this).attr('loading', 'lazy');
+  });
   // Handle form submission for both comments and replies
   $(document).on("submit", ".comment-form form, .reply-form", function (e) {
     e.preventDefault();
