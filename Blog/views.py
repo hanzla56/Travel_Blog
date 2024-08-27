@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.validators import validate_email
 import os
 
 
@@ -209,7 +210,21 @@ def add_comment(request):
 def emailNewsletter(request):
     if request.method == 'POST':
         email = request.POST.get('email')
+        
+        # Basic email validation
+        try:
+            validate_email(email)
+        except ValidationError:
+            return JsonResponse({'error': 'Invalid email address'}, status=400)
+        
+        # Check if email already exists
+        if EmailNewsletter.objects.filter(email=email).exists():
+            return JsonResponse({'error': 'Email already subscribed'}, status=400)
+        
+        # Save the email address
         obj = EmailNewsletter(email=email)
         obj.save()
         
-    return JsonResponse({'message':'added successfully'})
+        return JsonResponse({'message': 'Added successfully'})
+    
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
