@@ -114,6 +114,10 @@
   text-decoration: none;
   font-size: 14px;
 }
+.blog-detail_img img{
+  height: auto; 
+  max-width: 100%; 
+}
 .your-custom-class {
   height: auto; 
   max-width: 100%; 

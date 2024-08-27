@@ -57,10 +57,7 @@
   display: inline-flex;
   flex-wrap: wrap;
 }
-.blog-detail_img img{
-  width: 100%;
-  max-width: 100%;
-}
+
 .pagination-button {
   padding: 10px 15px;
   margin: 0 5px;
