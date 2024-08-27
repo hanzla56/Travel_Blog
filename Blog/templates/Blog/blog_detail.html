@@ -186,13 +186,15 @@ $(document).ready(function () {
       },
       success: function (response) {
         // Handle success, e.g., display a success message or update the comments section
-        Swal.fire({
-  position: "top-end",
-  icon: "success",
-  title: "your comment has been added",
-  showConfirmButton: false,
-  timer: 1500
-});
+        Toastify({
+  text: "Your comment has been added",
+  duration: 1500,
+  close: true,
+  gravity: "top", // `top` or `bottom`
+  position: "right", // `left`, `center` or `right`
+  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+}).showToast();
+
         console.log(response);
 
         // Create the new comment or reply HTML
@@ -286,66 +288,7 @@ if (formToReset) {
   });
 });
 
-  // Ajax call for adding the comment
-  // $(document).ready(function () {
-  //   $(".comment-form form").on("submit", function (e) {
-  //     e.preventDefault(); // Prevent the default form submission
-
-  //     // Collect form data
-  //     var formData = {
-  //       post_id: $("#post-id").val(),
-  //       comment: $("#comment").val(),
-  //       name: $("#name").val(),
-  //       email: $("#email").val(),
-  //       comment_id: $("#comment-id").val() || null, // Add this to check if it's a reply
-  //     };
-
-  //     // Send the form data via AJAX
-  //     $.ajax({
-  //       url: "/add_comment/", // Replace with your server endpoint URL
-  //       type: "POST",
-  //       data: formData,
-  //       headers: {
-  //         "X-CSRFToken": "{{ csrf_token }}", // Add CSRF token for security if using Django
-  //       },
-  //       success: function (response) {
-  //         // Handle success, e.g., display a success message or update the comments section
-  //         alert("Comment submitted successfully!");
-  //         console.log(response);
-
-  //         // Create the new comment HTML
-  //         var newCommentHtml = `
-  //                   <div class="comment-box" id="comment-${response.comment_id}">
-  //                       <strong>${formData.name}</strong>
-  //                       <p>${formData.comment}</p>
-  //                       <small>Just now</small>
-  //                       <a href="#comment-form" class="reply-btn" style="color: blue;" onclick="openReplyForm(event, ${response.comment_id})">Reply</a>
-  //                   </div>
-  //               `;
-
-  //         if (formData.comment_id) {
-  //           // If it's a reply, append it under the parent comment
-  //           console.log("if condition");
-  //           $("#comment-" + formData.comment_id).append(
-  //             '<div class="reply">' + newCommentHtml + "</div>"
-  //           );
-  //           console.log("appending");
-  //         } else {
-  //           // If it's a new comment, append it to the main comment section
-  //           console.log("else condition");
-  //           $(".comments").append(newCommentHtml);
-  //         }
-
-  //         // Optionally, clear the form
-  //         $(".comment-form form")[0].reset();
-  //       },
-  //       error: function (xhr, status, error) {
-  //         // Handle errors, e.g., display an error message
-  //         alert("There was an error submitting your comment: " + error);
-  //       },
-  //     });
-  //   });
-  // });
+  
 
   function openReplyForm(event, commentId) {
     event.preventDefault();
@@ -360,28 +303,7 @@ if (formToReset) {
     ); // Duration of the scroll in milliseconds
   }
 
-  // document.getElementById('comment-form').onsubmit = function(event) {
-  //   event.preventDefault();
-
-  //   // Retrieve form data
-  //   const commentId = document.getElementById('comment-id').value;
-  //   const name = document.getElementById('name').value;
-  //   const email = document.getElementById('email').value;
-  //   const commentText = document.getElementById('comment-text').value;
-
-  //   if (commentId) {
-  //     // Handle the reply submission (e.g., send data to server)
-  //     console.log("Replying to comment ID:", commentId);
-  //   } else {
-  //     // Handle the new comment submission (e.g., send data to server)
-  //     console.log("Adding a new comment");
-  //   }
-
-  //   // Clear the form and reset the title
-  //   document.getElementById('comment-id').value = "";
-  //   document.getElementById('form-title').textContent = "Leave a Comment";
-  //   document.getElementById('comment-form').reset();
-  // };
+ 
 </script>
 
 {% endblock js %}
