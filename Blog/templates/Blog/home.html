@@ -11,7 +11,7 @@
 
     {% if carousel %}
     {% for item in carousel %}
-    <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="1000">
+    <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="3000">
       <img
         src="{{item.image.url}}"
         class="d-block w-100"
@@ -25,7 +25,7 @@
     {% endfor %}
 
     {% else %}
-    <div class="carousel-item active" data-bs-interval="1000">
+    <div class="carousel-item active" data-bs-interval="3000">
       <img
         src="{% static 'Blog/images/image3_compress.jpg' %}"
         class="d-block w-100"
@@ -37,7 +37,7 @@
         <p>Discover the world’s best-kept secrets with our exclusive guides to breathtaking hidden gems and enchanting locales</p>
       </div>
     </div>
-    <div class="carousel-item" data-bs-interval="1000">
+    <div class="carousel-item" data-bs-interval="2000">
       <img
         src="{% static 'Blog/images/image2_compress.jpg' %}"
         class="d-block w-100"
