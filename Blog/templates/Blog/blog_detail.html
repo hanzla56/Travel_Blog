@@ -1,4 +1,5 @@
 {% extends "base.html" %} {% load static %}
+{% load custom_filters %}
 {% block css %}
 <link rel="stylesheet" href="{% static "Blog/css/blog_detail.css" %}">
 <style>
@@ -30,7 +31,7 @@
   <div class="row g-5">
     {% if blog %}
     <div class="col-lg-8 " >
-      <p class="mt-5 blog-detail_img">{{blog.content|safe}}</p>
+      <p class="mt-5 blog-detail_img">{{blog.content|add_lazy_load|safe}}</p>
       <br /><br /><br /><br /><br />
 
   <!-- Comments Contianer starts from here -->
