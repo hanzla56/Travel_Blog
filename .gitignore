@@ -1,13 +1,36 @@
-# Ignore virtual environment directory
-env/
+# Virtual environment
 venv/
+env/
+.env/
 
+# Database
+*.sqlite3
 db.sqlite3
 
-# Ignore Python bytecode
+# Python bytecode
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
 
-# Ignore media files
+# Django specific
+staticfiles/
 media/
+
+# Environment files
+.env
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Backup files
+*.bak
+*.tmp
+
+# Docker and CI/CD
+.docker/
+.github/
+.gitlab-ci.yml
