@@ -1,7 +1,13 @@
 # Ignore virtual environment directory
 env/
+venv/
 
+db.sqlite3
 
+# Ignore Python bytecode
 __pycache__/
 *.pyc
-db.sqlite3
+*.pyo
+
+# Ignore media files
+media/
