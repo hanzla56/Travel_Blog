@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'RumviaDatabase',
+        'NAME': 'rumviadatabase',
         'USER': 'rumvia',
         'PASSWORD': 'admin',
         'HOST': 'localhost',
