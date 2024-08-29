@@ -57,19 +57,32 @@ def blog_page(request):
 
 
 
-def blog_detail(request,slug):
-      blog = get_object_or_404(BlogPost,slug=slug)
-      popular_guides = BlogPost.objects.filter(is_popular_guide=True)
-      background_image = BlogPageBackgroundImage.objects.first()
-      comments = Comment.objects.filter(post = blog)
-      print('view runs here')
-      context = {
-            'blog':blog,
-            'popular_guides':popular_guides,
-            'background_image':background_image,
-            'comments':comments
-      }
-      return render(request,'Blog/blog_detail.html',context)
+# def blog_detail(request,slug):
+#       blog = get_object_or_404(BlogPost,slug=slug)
+#       popular_guides = BlogPost.objects.filter(is_popular_guide=True)
+#       background_image = BlogPageBackgroundImage.objects.first()
+#       comments = Comment.objects.filter(post = blog)
+#       print('view runs here')
+#       context = {
+#             'blog':blog,
+#             'popular_guides':popular_guides,
+#             'background_image':background_image,
+#             'comments':comments
+#       }
+#       return render(request,'Blog/blog_detail.html',context)
+
+def blog_detail(request, slug):
+    blog = get_object_or_404(BlogPost.objects.prefetch_related('comments'), slug=slug)
+    popular_guides = BlogPost.objects.filter(is_popular_guide=True)
+    background_image = BlogPageBackgroundImage.objects.first()
+    
+    context = {
+        'blog': blog,
+        'popular_guides': popular_guides,
+        'background_image': background_image,
+        'comments': blog.comments.all()  # Using prefetch_related
+    }
+    return render(request, 'Blog/blog_detail.html', context)
   
   
 def search(request):
